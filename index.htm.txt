@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>16 SAAT GECE | Canlı</title>
+    <style>
+        :root { --gold: #d4af37; --bg: #000; }
+        body, html { margin: 0; padding: 0; background: #000; color: #fff; font-family: 'Times New Roman', serif; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #181818 0%, #000 85%); z-index: -1; }
+        .top-status { width: 100%; padding: 15px 0; text-align: center; font-family: monospace; font-size: 0.6rem; letter-spacing: 2px; color: #444; border-bottom: 1px solid #111; }
+        .top-status b { color: #2ecc71; text-shadow: 0 0 5px #2ecc71; }
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; box-sizing: border-box; }
+        .logo { font-size: 2.2rem; letter-spacing: 12px; color: var(--gold); margin: 0; font-weight: 200; text-shadow: 0 0 20px rgba(212,175,55,0.4); }
+        .timer-box { margin: 40px 0; }
+        .timer-val { font-family: 'Courier New', monospace; font-size: 2.4rem; color: #eee; letter-spacing: 5px; }
+        .seal { width: 95px; height: 95px; background: radial-gradient(circle, #f1c40f 0%, #d4af37 100%); border-radius: 50%; border: 2px solid #8e6d13; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(212,175,55,0.3); cursor: pointer; transition: 0.4s; }
+        .seal::after { content: '⚜️'; font-size: 2.2rem; }
+        .panel { position: fixed; bottom: -100%; left: 0; width: 100%; height: 85vh; background: #050505; border-top: 1px solid var(--gold); border-radius: 35px 35px 0 0; transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1); z-index: 1000; padding: 30px 20px; box-sizing: border-box; overflow-y: auto; }
+        .panel.active { bottom: 0; }
+        .close-btn { text-align: center; color: #333; font-size: 0.6rem; letter-spacing: 3px; margin-bottom: 30px; }
+        .menu-item { border-bottom: 1px solid #111; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+        .order-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 18px; border-radius: 25px; text-decoration: none; font-size: 0.65rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="top-status">KAZAN: No.01 | ISI: 89°C | <b>● SİPARİŞ HATTI AKTİF</b></div>
+    <div class="hero" id="mainHero">
+        <h1 class="logo">16 SAAT GECE</h1>
+        <div class="timer-box"><div class="timer-val" id="clock">16:25:47</div></div>
+        <div class="seal" onclick="openPanel()"></div>
+        <p style="margin-top: 25px; font-size: 0.45rem; color: #444; letter-spacing: 3px;">KAZAN KAPISINI ARALA</p>
+    </div>
+    <div id="shifaPanel" class="panel">
+        <div class="close-btn" onclick="closePanel()">── KAPAT ──</div>
+        <div class="menu-item"><div><h3>X1 | SAF ÖZ</h3><small style="color:var(--gold)">295 TL</small></div><a href="#" class="order-btn">TALEP ET</a></div>
+        <div class="menu-item"><div><h3>X5 | ATOM</h3><small style="color:var(--gold)">645 TL</small></div><a href="#" class="order-btn">TALEP ET</a></div>
+    </div>
+    <script>
+        let h=16, m=25, s=47;
+        setInterval(() => { s++; if(s==60){s=0; m++;} if(m==60){m=0; h++;}
+        document.getElementById('clock').innerText = (h<10?'0'+h:h)+":"+(m<10?'0'+m:m)+":"+(s<10?'0'+s:s); }, 1000);
+        function openPanel() { document.getElementById('shifaPanel').classList.add('active'); document.getElementById('mainHero').style.opacity = '0.2'; }
+        function closePanel() { document.getElementById('shifaPanel').classList.remove('active'); document.getElementById('mainHero').style.opacity = '1'; }
+    </script>
+</body>
+</html>
